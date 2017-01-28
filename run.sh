@@ -14,4 +14,4 @@ module load gcc/5.2.0
 #
 #
 #
-python generator-discriminator.py
+/auto/ugrad_space/jungkyup/anaconda2/bin/python generator-discriminator.py
