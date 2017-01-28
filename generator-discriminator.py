@@ -1,7 +1,6 @@
 import numpy as np
 import numpy.random
 import matplotlib.pyplot as plt
-%matplotlib inline
 
 import os, sys, socket
 gpuid = 1 
@@ -13,6 +12,7 @@ import keras
 from keras.datasets import mnist
 from keras.models import Model, Sequential
 from keras.layers import Dense, Dropout, Activation, Input, Convolution2D, Flatten, merge
+from keras.layers.normalization import BatchNormalization 
 from keras.utils import np_utils
 from keras.optimizers import SGD, Adam
 
@@ -75,7 +75,7 @@ def define_discriminator(ndense=1, nhid=100, act='relu', lr=1e-3, mom=0.9, decay
     discriminator.compile(loss='binary_crossentropy', optimizer=opt)
     return discriminator
 
-def plot_loss(history):
+def plot_loss(history, filename):
     plt.figure(1)
     plt.clf()
     for k in history:
@@ -83,9 +83,10 @@ def plot_loss(history):
     plt.legend()
     plt.xlabel('Epoch')
     plt.ylabel('')
-    plt.show()
+    #plt.show()
+    plt.savefig(filename)
     
-def plot_gen(generator, input_shape):
+def plot_gen(generator, input_shape, filename):
     noisebatch = np.random.uniform(-1, 1, size=[10, input_shape])
     generated  = generator.predict(noisebatch)
     plt.figure(2, figsize=(14,5))
@@ -95,7 +96,8 @@ def plot_gen(generator, input_shape):
         plt.imshow(generated[i,:].reshape(28,28), cmap='gray', interpolation='none', vmin=0.0, vmax=1.0)
         plt.xticks([])
         plt.yticks([]) 
-    plt.show()
+    #plt.show()
+    plt.savefig(filename)
     
 num_epochs  = 10000  *3
 plt_frq     = 500
@@ -137,5 +139,5 @@ for epoch in tqdm(range(num_epochs)):
     
     # Updates plots
     if epoch % plt_frq == plt_frq - 1:
-        plot_loss(history)
-        plot_gen(generator, input_shape=input_shape)
+        plot_loss(history,'loss'+str(epoch))
+        plot_gen(generator, input_shape,'gen'+str(epoch))
