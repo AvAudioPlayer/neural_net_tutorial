@@ -4,8 +4,8 @@
 #$ -j y
 #$ -S /bin/bash
 #$ -M jungkyup@uci.edu
-#$ -pe openmpi 16
-#$ -o gen-dis.out
+#$ -pe openmpi 128
+#$ -o mnist128.out
 #
 #
 #
@@ -14,4 +14,4 @@ module load sge
 #
 #
 #
-/auto/ugrad_space/jungkyup/anaconda2/bin/python generator-discriminator.py
+time /auto/ugrad_space/jungkyup/anaconda2/bin/python mnist.py

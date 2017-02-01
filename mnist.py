@@ -1,5 +1,5 @@
 import numpy as np
-import matplotlib.pyplot as plt
+#import matplotlib.pyplot as plt
 
 import keras
 from keras.datasets import mnist
@@ -47,17 +47,17 @@ model.add(Dense(10, activation='softmax')) # Use softmax layer for multi-class p
 
 model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
 
-history = model.fit(X_train, Y_train, batch_size=128, nb_epoch=15, verbose=1,
+history = model.fit(X_train, Y_train, batch_size=128, nb_epoch=10, verbose=1,
                     validation_data=(X_test, Y_test))
 
 # Plot loss trajectory throughout training.
 #plt.figure(1, figsize=(14,5))
-plt.figure(1)
+#plt.figure(1)
 #plt.subplot(1,2,1)
-plt.plot(history.history['loss'], label='train')
+#plt.plot(history.history['loss'], label='train')
 #plt.plot(history.history['val_loss'], label='valid')
-plt.xlabel('Training Epoch')
-plt.ylabel('Training Error')
+#plt.xlabel('Training Epoch')
+#plt.ylabel('Training Error')
 #plt.legend()
 
 '''plt.subplot(1,2,2)
@@ -66,7 +66,7 @@ plt.plot(history.history['val_acc'], label='valid')
 plt.xlabel('Epoch')
 plt.ylabel('Accuracy')
 plt.legend()'''
-plt.savefig('relu_unnorm.png')
+#plt.savefig('relu_unnorm.png')
 
 # Note: when calling evaluate, dropout is automatically turned off.
 # score = model.evaluate(X_test, Y_test, show_accuracy=True, verbose=0)
