@@ -1,2 +1,2 @@
 #!/bin/bash
-qsub -q opengpu.q run.sh
+qsub -q openlab.q run.sh
