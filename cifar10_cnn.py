@@ -101,3 +101,4 @@ else:
                         samples_per_epoch=X_train.shape[0],
                         nb_epoch=nb_epoch,
                         validation_data=(X_test, Y_test))
+model.save('cifar10.h5')
