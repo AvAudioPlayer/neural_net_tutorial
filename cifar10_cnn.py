@@ -14,6 +14,10 @@ from keras.models import Sequential
 from keras.layers import Dense, Dropout, Activation, Flatten
 from keras.layers import Convolution2D, MaxPooling2D
 from keras.utils import np_utils
+import os
+
+num_workers = 32
+os.environ["OMP_NUM_THREADS"]=str(num_workers)
 
 batch_size = 32
 nb_classes = 10
@@ -100,5 +104,8 @@ else:
                                      batch_size=batch_size),
                         samples_per_epoch=X_train.shape[0],
                         nb_epoch=nb_epoch,
-                        validation_data=(X_test, Y_test))
-model.save('cifar10.h5')
+                        validation_data=(X_test, Y_test),
+                        nb_worker=num_workers, #After adding these three lines, I am getting batch size of 50016, instead of 50000
+                        pickle_safe=True,
+                        max_q_size=2*num_workers)
+model.save('cifar10_32_omp.h5')

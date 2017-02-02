@@ -4,8 +4,8 @@
 #$ -j y
 #$ -S /bin/bash
 #$ -M jungkyup@uci.edu
-#$ -pe openmpi 512
-#$ -o cifar512.out
+#$ -pe openmpi 32
+#$ -o cifar32omp.out
 #
 #
 #
