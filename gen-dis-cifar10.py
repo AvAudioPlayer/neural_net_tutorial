@@ -95,7 +95,7 @@ def plot_gen(generator, input_shape, filename):
     plt.clf()
     for i in range(10):
         plt.subplot(2,5, i+1)
-        plt.imshow(generated[i,:].reshape(28,28), cmap='gray', interpolation='none', vmin=0.0, vmax=1.0)
+        plt.imshow(generated[i,:].reshape(32,32,3), cmap='gray', interpolation='none', vmin=0.0, vmax=1.0) #PROLLY WRONG... FIND OUT A WAY!
         plt.xticks([])
         plt.yticks([]) 
     #plt.show()
@@ -145,6 +145,6 @@ for epoch in tqdm(range(num_epochs)):
         plot_loss(history,'loss'+str(epoch))
         plot_gen(generator, input_shape,'gen'+str(epoch))
     '''
-    pickle.dump( history, open( str(epoch)+"_history.pkl", "wb" ) )
-    generator.save_weights(str(epoch)+'_generator_weights.h5')
-    discriminator.save_weights(str(epoch)+'_discriminator_weights.h5')
+pickle.dump( history, open( "history.pkl", "wb" ) )
+generator.save_weights('generator_weights.h5')
+discriminator.save_weights(+'discriminator_weights.h5')
